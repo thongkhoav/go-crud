@@ -16,7 +16,11 @@ func init() {
 func main() {
 
 	routes := gin.Default()
-
+	routes.GET("/hello", func(ctx *gin.Context) {
+		ctx.JSON(200, gin.H{
+			"message": "Hello World!",
+		})
+	})
 	routes.POST("/signup", controllers.Signup)
 	routes.POST("/login", controllers.Login)
 	routes.GET("/protect", middleware.RequireAuth, controllers.TestAuthenication)
